@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".gestionEvenement">
+    tools:context=".GestionEvenement">
 
     <Button
         android:id="@+id/action_naviguer_ajouter_evenement"

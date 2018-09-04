@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class gestionEvenement extends AppCompatActivity {
+public class GestionEvenement extends AppCompatActivity {
 
     protected ListView vueListeEvenement;
     protected List<HashMap<String, String>> listeEvenement;
@@ -29,7 +29,11 @@ public class gestionEvenement extends AppCompatActivity {
                 new String[] {"titre","auteur"},
                 new int[] {android.R.id.text1, android.R.id.text2});
 
+
+        vueListeEvenement.setAdapter(adapteur);
+
     }
+
 
     public List<HashMap<String,String>> prepareListeEvenements()
     {

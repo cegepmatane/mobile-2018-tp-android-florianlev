@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import ca.qc.cgmatane.informatique.gestionevenement.R;
 
-public class ajouterEvenement extends AppCompatActivity {
+public class AjouterEvenement extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
