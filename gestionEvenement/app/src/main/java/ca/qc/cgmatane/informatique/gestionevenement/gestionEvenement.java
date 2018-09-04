@@ -15,6 +15,8 @@ import java.util.HashMap;
 import java.util.List;
 
 import ca.qc.cgmatane.informatique.gestionevenement.donnee.EvenementDao;
+import ca.qc.cgmatane.informatique.gestionevenement.vue.AjouterEvenement;
+import ca.qc.cgmatane.informatique.gestionevenement.vue.ModifierEvenement;
 
 public class GestionEvenement extends AppCompatActivity {
 
@@ -22,6 +24,7 @@ public class GestionEvenement extends AppCompatActivity {
     protected List<HashMap<String, String>> listeEvenement;
 
     protected EvenementDao accesseurLivre = EvenementDao.getInstance();
+    protected Intent intentionNaviguerAjouterEvenement;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,9 +75,19 @@ public class GestionEvenement extends AppCompatActivity {
                             */
                         message.show();
 
+                        Intent intentionNaviguerModiferEvenement = new Intent(
+                                GestionEvenement.this,
+                                ModifierEvenement.class
+                        );
+
+                        startActivity(intentionNaviguerModiferEvenement);
+
 
                     }}
         );
+
+        intentionNaviguerAjouterEvenement = new Intent(this,
+                AjouterEvenement.class);
     }
 
 
