@@ -1,9 +1,14 @@
 package ca.qc.cgmatane.informatique.gestionevenement;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,7 +40,40 @@ public class GestionEvenement extends AppCompatActivity {
 
 
         vueListeEvenement.setAdapter(adapteur);
+        vueListeEvenement.setOnItemClickListener(
+                new AdapterView.OnItemClickListener(){
 
+                    @Override
+                    public void onItemClick(AdapterView<?> parent,
+                                            View vue,
+                                            int positionDansAdapteur,
+                                            long positionItem) {
+                        Log.d("Bibliotheque", "onItemClick");
+                        ListView vueListeLivre = (ListView)vue.getParent();
+
+                        @SuppressWarnings("unchecked")
+                        HashMap<String,String> livre =
+                                (HashMap<String, String>)
+                                        vueListeLivre.getItemAtPosition((int)positionItem);
+
+                        Toast message = Toast.makeText(getApplicationContext(),
+                                "Position " +
+                                        positionItem +
+                                        " titre " +
+                                        livre.get("titre"),
+                                Toast.LENGTH_SHORT);
+
+                        Log.d("Bibliotheque", "onItemClick Position:"+positionItem);
+                        Log.d("Bibliotheque", "onItemClick Titre:"+livre.get("titre"));
+/*
+                    Toast message = Toast.makeText(getApplicationContext(),
+                            "Bonjour monde! ",
+                            Toast.LENGTH_SHORT);
+                            */
+                        message.show();
+
+                    }}
+        );
     }
 
 
