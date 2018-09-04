@@ -25,6 +25,12 @@ public class EvenementDao {
         prepareListeEvenements();
     }
 
+    public List<HashMap<String, String>> recupererListeEvenement() {
+
+        return listeEvenements;
+    }
+
+
     public void prepareListeEvenements()
     {
 

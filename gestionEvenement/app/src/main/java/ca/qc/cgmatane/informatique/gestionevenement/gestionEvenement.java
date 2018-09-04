@@ -9,10 +9,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import ca.qc.cgmatane.informatique.gestionevenement.donnee.EvenementDao;
+
 public class GestionEvenement extends AppCompatActivity {
 
     protected ListView vueListeEvenement;
     protected List<HashMap<String, String>> listeEvenement;
+
+    protected EvenementDao accesseurLivre = EvenementDao.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +24,7 @@ public class GestionEvenement extends AppCompatActivity {
         setContentView(R.layout.vue_gestion_evenement);
 
         vueListeEvenement = (ListView) findViewById(R.id.vue_liste_evenement);
-        listeEvenement = prepareListeEvenements();
+        listeEvenement = accesseurLivre.recupererListeEvenement();
 
         SimpleAdapter adapteur = new SimpleAdapter(
                 this,
