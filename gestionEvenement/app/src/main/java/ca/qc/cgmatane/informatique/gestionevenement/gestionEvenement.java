@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
@@ -88,6 +89,19 @@ public class GestionEvenement extends AppCompatActivity {
 
         intentionNaviguerAjouterEvenement = new Intent(this,
                 AjouterEvenement.class);
+
+        Button actionNaviguerAjouterEvenement =
+                (Button)findViewById(R.id.action_naviguer_ajouter_evenement);
+
+        actionNaviguerAjouterEvenement.setOnClickListener(
+
+                new View.OnClickListener()
+                {
+                    public void onClick(View arg0) {
+                        startActivity(intentionNaviguerAjouterEvenement);
+                    }
+                }
+        );
     }
 
 
