@@ -3,6 +3,7 @@ package ca.qc.cgmatane.informatique.gestionevenement;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,6 +21,13 @@ public class gestionEvenement extends AppCompatActivity {
 
         vueListeEvenement = (ListView) findViewById(R.id.vue_liste_evenement);
         listeEvenement = prepareListeEvenements();
+
+        SimpleAdapter adapteur = new SimpleAdapter(
+                this,
+                listeEvenement,
+                android.R.layout.two_line_list_item,
+                new String[] {"titre","auteur"},
+                new int[] {android.R.id.text1, android.R.id.text2});
 
     }
 
