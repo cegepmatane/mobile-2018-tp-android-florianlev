@@ -35,7 +35,7 @@ public class GestionEvenement extends AppCompatActivity {
     }
 
 
-    public List<HashMap<String,String>> prepareListeEvenements()
+    /*public List<HashMap<String,String>> prepareListeEvenements()
     {
 
         List<HashMap<String,String>> listeEvenements =
@@ -59,7 +59,7 @@ public class GestionEvenement extends AppCompatActivity {
         listeEvenements.add(evenement);
 
         return listeEvenements;
-    }
+    }*/
 }
 
 
