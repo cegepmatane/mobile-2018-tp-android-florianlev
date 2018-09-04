@@ -16,6 +16,9 @@ public class gestionEvenement extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vue_gestion_evenement);
+
+        vueListeEvenement = (ListView) findViewById(R.id.vue_liste_evenement);
+
     }
 }
 
