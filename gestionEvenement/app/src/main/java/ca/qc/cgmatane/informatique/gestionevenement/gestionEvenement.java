@@ -39,7 +39,7 @@ public class GestionEvenement extends AppCompatActivity {
                 this,
                 listeEvenement,
                 android.R.layout.two_line_list_item,
-                new String[] {"titre","auteur"},
+                new String[] {"titre","lieu"},
                 new int[] {android.R.id.text1, android.R.id.text2});
 
 
@@ -52,23 +52,23 @@ public class GestionEvenement extends AppCompatActivity {
                                             View vue,
                                             int positionDansAdapteur,
                                             long positionItem) {
-                        Log.d("Bibliotheque", "onItemClick");
-                        ListView vueListeLivre = (ListView)vue.getParent();
+                        Log.d("GestionEvenement", "onItemClick");
+                        ListView vueListeEvenement = (ListView)vue.getParent();
 
                         @SuppressWarnings("unchecked")
-                        HashMap<String,String> livre =
+                        HashMap<String,String> evenement =
                                 (HashMap<String, String>)
-                                        vueListeLivre.getItemAtPosition((int)positionItem);
+                                        vueListeEvenement.getItemAtPosition((int)positionItem);
 
                         Toast message = Toast.makeText(getApplicationContext(),
                                 "Position " +
                                         positionItem +
                                         " titre " +
-                                        livre.get("titre"),
+                                        evenement.get("titre"),
                                 Toast.LENGTH_SHORT);
 
-                        Log.d("Bibliotheque", "onItemClick Position:"+positionItem);
-                        Log.d("Bibliotheque", "onItemClick Titre:"+livre.get("titre"));
+                        Log.d("GestionEvenement", "onItemClick Position:"+positionItem);
+                        Log.d("GestionEvenement", "onItemClick Titre:"+evenement.get("titre"));
 /*
                     Toast message = Toast.makeText(getApplicationContext(),
                             "Bonjour monde! ",
@@ -82,8 +82,6 @@ public class GestionEvenement extends AppCompatActivity {
                         );
 
                         startActivity(intentionNaviguerModiferEvenement);
-
-
                     }}
         );
 
@@ -94,7 +92,6 @@ public class GestionEvenement extends AppCompatActivity {
                 (Button)findViewById(R.id.action_naviguer_ajouter_evenement);
 
         actionNaviguerAjouterEvenement.setOnClickListener(
-
                 new View.OnClickListener()
                 {
                     public void onClick(View arg0) {
