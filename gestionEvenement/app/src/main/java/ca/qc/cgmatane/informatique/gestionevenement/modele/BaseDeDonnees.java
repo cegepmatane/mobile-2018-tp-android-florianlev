@@ -27,6 +27,15 @@ public class BaseDeDonnees extends SQLiteOpenHelper {
         super(contexte, "gestionEvenement", null, 1);
     }
 
+    public void onCreate(SQLiteDatabase db) {
+
+    }
+
+    public void onOpen(SQLiteDatabase db) {
 
 
+    }
+
+    public void onUpgrade(SQLiteDatabase db, int arg1, int arg2) {
+    }
 }
