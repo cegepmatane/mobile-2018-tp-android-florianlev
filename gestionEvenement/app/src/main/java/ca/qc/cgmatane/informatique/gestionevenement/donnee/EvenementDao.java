@@ -54,7 +54,7 @@ public class EvenementDao {
         }
     }
 
-    public List<HashMap<String, String>> recuperereListeLivrePourAdapteur() {
+    public List<HashMap<String, String>> recuperereListeEvenementPourAdapteur() {
         List<HashMap<String, String>> listeEvenementPourAdaptateur;
         listeEvenementPourAdaptateur = new ArrayList<HashMap<String, String>>();
 

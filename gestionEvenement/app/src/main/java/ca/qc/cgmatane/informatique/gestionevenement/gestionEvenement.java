@@ -21,6 +21,9 @@ import ca.qc.cgmatane.informatique.gestionevenement.vue.ModifierEvenement;
 
 public class GestionEvenement extends AppCompatActivity {
 
+    static final public int ACTIVITE_AJOUTER_EVENEMENT = 1;
+    static final public int ACTIVITE_MODIFIER_EVENEMENT = 2;
+
     protected ListView vueListeEvenement;
     protected List<HashMap<String, String>> listeEvenementPourAdapteur;
 
@@ -33,9 +36,9 @@ public class GestionEvenement extends AppCompatActivity {
         setContentView(R.layout.vue_gestion_evenement);
 
         vueListeEvenement = (ListView) findViewById(R.id.vue_liste_evenement);
-        listeEvenementPourAdapteur = accesseurLivre.recupererListeEvenement();
+        listeEvenementPourAdapteur = accesseurLivre.recuperereListeEvenementPourAdapteur();
 
-        SimpleAdapter adapteur = new SimpleAdapter(
+        /*SimpleAdapter adapteur = new SimpleAdapter(
                 this,
                 listeEvenementPourAdapteur,
                 android.R.layout.two_line_list_item,
@@ -44,6 +47,9 @@ public class GestionEvenement extends AppCompatActivity {
 
 
         vueListeEvenement.setAdapter(adapteur);
+        */
+
+        afficherTousLesEvenements();
         vueListeEvenement.setOnItemClickListener(
                 new AdapterView.OnItemClickListener(){
 
@@ -80,8 +86,8 @@ public class GestionEvenement extends AppCompatActivity {
                                 GestionEvenement.this,
                                 ModifierEvenement.class
                         );
-
-                        startActivity(intentionNaviguerModiferEvenement);
+                        intentionNaviguerModiferEvenement.putExtra("id_evenement", evenement.get("id_evenement"));
+                        startActivityForResult(intentionNaviguerModiferEvenement, ACTIVITE_MODIFIER_EVENEMENT);
                     }}
         );
 
@@ -101,18 +107,32 @@ public class GestionEvenement extends AppCompatActivity {
         );
     }
 
-    protected void afficherTousLesLivres()
+    protected void afficherTousLesEvenements()
     {
-        listeEvenementPourAdapteur = accesseurLivre.recuperereListeLivrePourAdapteur();
+        listeEvenementPourAdapteur = accesseurLivre.recuperereListeEvenementPourAdapteur();
 
         SimpleAdapter adapteur = new SimpleAdapter(
                 this,
                 listeEvenementPourAdapteur,
                 android.R.layout.two_line_list_item,
-                new String[] {"titre","auteur"},
+                new String[] {"titre","lieu"},
                 new int[] {android.R.id.text1, android.R.id.text2});
 
         vueListeEvenement.setAdapter(adapteur);
+    }
+
+    protected void onActivityResult(int activite, int resultat, Intent donnees)
+    {
+        switch(activite)
+        {
+            case ACTIVITE_AJOUTER_EVENEMENT:
+                afficherTousLesEvenements();
+                break;
+            case ACTIVITE_MODIFIER_EVENEMENT:
+                afficherTousLesEvenements();
+                break;
+        }
+
     }
 
 
