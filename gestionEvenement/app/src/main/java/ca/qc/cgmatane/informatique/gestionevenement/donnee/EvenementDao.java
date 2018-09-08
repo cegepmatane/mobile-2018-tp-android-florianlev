@@ -32,6 +32,15 @@ public class EvenementDao {
         return listeEvenements;
     }*/
 
+    public Evenement trouverEvenement(int id_evenement)
+    {
+        for(Evenement livreRecherche : this.listeEvenements)
+        {
+            if(livreRecherche.getId_evenement() == id_evenement) return livreRecherche;
+        }
+        return null;
+    }
+
     public void modifierEvenement(Evenement evenement)
     {
         for(Evenement livreTeste : this.listeEvenements)
