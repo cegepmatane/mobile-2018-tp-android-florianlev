@@ -32,6 +32,19 @@ public class EvenementDao {
         return listeEvenements;
     }*/
 
+    public void modifierEvenement(Evenement evenement)
+    {
+        for(Evenement livreTeste : this.listeEvenements)
+        {
+            if(livreTeste.getId_evenement() == evenement.getId_evenement())
+            {
+                livreTeste.setLieu(evenement.getLieu());
+                livreTeste.setTitre(evenement.getTitre());
+                return;
+            }
+        }
+    }
+
     public List<HashMap<String, String>> recuperereListeLivrePourAdapteur() {
         List<HashMap<String, String>> listeEvenementPourAdaptateur;
         listeEvenementPourAdaptateur = new ArrayList<HashMap<String, String>>();
