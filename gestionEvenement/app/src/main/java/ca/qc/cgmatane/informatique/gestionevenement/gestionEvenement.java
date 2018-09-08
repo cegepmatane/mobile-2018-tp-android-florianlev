@@ -27,7 +27,7 @@ public class GestionEvenement extends AppCompatActivity {
     protected ListView vueListeEvenement;
     protected List<HashMap<String, String>> listeEvenementPourAdapteur;
 
-    protected EvenementDao accesseurLivre = EvenementDao.getInstance();
+    protected EvenementDao accesseurEvenement = EvenementDao.getInstance();
     protected Intent intentionNaviguerAjouterEvenement;
 
     @Override
@@ -36,7 +36,7 @@ public class GestionEvenement extends AppCompatActivity {
         setContentView(R.layout.vue_gestion_evenement);
 
         vueListeEvenement = (ListView) findViewById(R.id.vue_liste_evenement);
-        listeEvenementPourAdapteur = accesseurLivre.recuperereListeEvenementPourAdapteur();
+        listeEvenementPourAdapteur = accesseurEvenement.recuperereListeEvenementPourAdapteur();
 
         /*SimpleAdapter adapteur = new SimpleAdapter(
                 this,
@@ -109,7 +109,7 @@ public class GestionEvenement extends AppCompatActivity {
 
     protected void afficherTousLesEvenements()
     {
-        listeEvenementPourAdapteur = accesseurLivre.recuperereListeEvenementPourAdapteur();
+        listeEvenementPourAdapteur = accesseurEvenement.recuperereListeEvenementPourAdapteur();
 
         SimpleAdapter adapteur = new SimpleAdapter(
                 this,

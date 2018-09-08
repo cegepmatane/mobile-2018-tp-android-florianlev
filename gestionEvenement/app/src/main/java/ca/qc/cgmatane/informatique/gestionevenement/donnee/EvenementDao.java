@@ -34,21 +34,21 @@ public class EvenementDao {
 
     public Evenement trouverEvenement(int id_evenement)
     {
-        for(Evenement livreRecherche : this.listeEvenements)
+        for(Evenement evenementRecherche : this.listeEvenements)
         {
-            if(livreRecherche.getId_evenement() == id_evenement) return livreRecherche;
+            if(evenementRecherche.getId_evenement() == id_evenement) return evenementRecherche;
         }
         return null;
     }
 
     public void modifierEvenement(Evenement evenement)
     {
-        for(Evenement livreTeste : this.listeEvenements)
+        for(Evenement evenementTeste : this.listeEvenements)
         {
-            if(livreTeste.getId_evenement() == evenement.getId_evenement())
+            if(evenementTeste.getId_evenement() == evenement.getId_evenement())
             {
-                livreTeste.setLieu(evenement.getLieu());
-                livreTeste.setTitre(evenement.getTitre());
+                evenementTeste.setLieu(evenement.getLieu());
+                evenementTeste.setTitre(evenement.getTitre());
                 return;
             }
         }
