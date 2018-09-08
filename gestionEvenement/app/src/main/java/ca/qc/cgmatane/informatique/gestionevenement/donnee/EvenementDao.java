@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import ca.qc.cgmatane.informatique.gestionevenement.modele.Evenement;
+
 public class EvenementDao {
 
     private static EvenementDao instance = null;
 
-    protected List<HashMap<String, String>> listeEvenements ;
+    protected List<Evenement> listeEvenements ;
 
     public static EvenementDao getInstance()
     {
@@ -21,13 +23,23 @@ public class EvenementDao {
 
     public EvenementDao()
     {
-        listeEvenements = new ArrayList<HashMap<String, String>>();
+        listeEvenements = new ArrayList<Evenement>();
         prepareListeEvenements();
     }
 
-    public List<HashMap<String, String>> recupererListeEvenement() {
+    /*public List<HashMap<String, String>> recupererListeEvenement() {
 
         return listeEvenements;
+    }*/
+
+    public List<HashMap<String, String>> recuperereListeLivrePourAdapteur() {
+        List<HashMap<String, String>> listeEvenementPourAdaptateur;
+        listeEvenementPourAdaptateur = new ArrayList<HashMap<String, String>>();
+
+        for(Evenement evenement:listeEvenements){
+            listeEvenementPourAdaptateur.add(evenement.obtenirEvenementPourAdaptateur());
+        }
+        return listeEvenementPourAdaptateur;
     }
 
 

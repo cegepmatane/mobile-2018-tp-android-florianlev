@@ -22,7 +22,7 @@ import ca.qc.cgmatane.informatique.gestionevenement.vue.ModifierEvenement;
 public class GestionEvenement extends AppCompatActivity {
 
     protected ListView vueListeEvenement;
-    protected List<HashMap<String, String>> listeEvenement;
+    protected List<HashMap<String, String>> listeEvenementPourAdapteur;
 
     protected EvenementDao accesseurLivre = EvenementDao.getInstance();
     protected Intent intentionNaviguerAjouterEvenement;
@@ -33,11 +33,11 @@ public class GestionEvenement extends AppCompatActivity {
         setContentView(R.layout.vue_gestion_evenement);
 
         vueListeEvenement = (ListView) findViewById(R.id.vue_liste_evenement);
-        listeEvenement = accesseurLivre.recupererListeEvenement();
+        listeEvenementPourAdapteur = accesseurLivre.recupererListeEvenement();
 
         SimpleAdapter adapteur = new SimpleAdapter(
                 this,
-                listeEvenement,
+                listeEvenementPourAdapteur,
                 android.R.layout.two_line_list_item,
                 new String[] {"titre","lieu"},
                 new int[] {android.R.id.text1, android.R.id.text2});
@@ -99,6 +99,20 @@ public class GestionEvenement extends AppCompatActivity {
                     }
                 }
         );
+    }
+
+    protected void afficherTousLesLivres()
+    {
+        listeEvenementPourAdapteur = accesseurLivre.recuperereListeLivrePourAdapteur();
+
+        SimpleAdapter adapteur = new SimpleAdapter(
+                this,
+                listeEvenementPourAdapteur,
+                android.R.layout.two_line_list_item,
+                new String[] {"titre","auteur"},
+                new int[] {android.R.id.text1, android.R.id.text2});
+
+        vueListeEvenement.setAdapter(adapteur);
     }
 
 
