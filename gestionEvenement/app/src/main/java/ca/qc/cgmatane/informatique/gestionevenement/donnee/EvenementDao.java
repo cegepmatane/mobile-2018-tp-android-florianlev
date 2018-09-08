@@ -42,9 +42,9 @@ public class EvenementDao {
         return listeEvenementPourAdaptateur;
     }
 
-    public void ajouterEvenement(Evenement livre)
+    public void ajouterEvenement(Evenement evenement)
     {
-        listeEvenements.add(livre);
+        listeEvenements.add(evenement);
 
     }
 
@@ -52,7 +52,11 @@ public class EvenementDao {
     public void prepareListeEvenements()
     {
 
-        HashMap<String,String> evenement;
+        listeEvenements.add(new Evenement("reunion", "cegep Matane", 1));
+        listeEvenements.add(new Evenement("party", "chez moi", 2));
+        listeEvenements.add(new Evenement("recuperer voiture", "chez keke", 3));
+
+        /*HashMap<String,String> evenement;
 
         evenement = new HashMap<String,String>();
         evenement.put("titre", "reunion");
@@ -68,6 +72,6 @@ public class EvenementDao {
         evenement.put("titre", "recuperer voiture");
         evenement.put("lieu", "chez keke");
         listeEvenements.add(evenement);
-
+*/
     }
 }
