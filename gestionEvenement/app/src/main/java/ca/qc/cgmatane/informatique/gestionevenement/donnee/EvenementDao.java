@@ -42,6 +42,12 @@ public class EvenementDao {
         return listeEvenementPourAdaptateur;
     }
 
+    public void ajouterEvenement(Evenement livre)
+    {
+        listeEvenements.add(livre);
+
+    }
+
 
     public void prepareListeEvenements()
     {
