@@ -1,14 +1,19 @@
 package ca.qc.cgmatane.informatique.gestionevenement.donnee;
 
+import android.database.Cursor;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import ca.qc.cgmatane.informatique.gestionevenement.modele.BaseDeDonnees;
 import ca.qc.cgmatane.informatique.gestionevenement.modele.Evenement;
 
 public class EvenementDao {
 
     private static EvenementDao instance = null;
+    private BaseDeDonnees accesseurBaseDeDonnees;
+
 
     protected List<Evenement> listeEvenements ;
 
@@ -23,8 +28,31 @@ public class EvenementDao {
 
     public EvenementDao()
     {
+        this.accesseurBaseDeDonnees = BaseDeDonnees.getInstance();
         listeEvenements = new ArrayList<Evenement>();
-        prepareListeEvenements();
+        //prepareListeEvenements();
+    }
+
+    public List<Evenement> listerEvenement() {
+        String LISTER_EVENEMENTS = "SELECT * FROM evenement";
+        Cursor curseur = accesseurBaseDeDonnees.getReadableDatabase().rawQuery(LISTER_EVENEMENTS,
+                null);
+        this.listeEvenements.clear();
+        Evenement evenement;
+
+        int indexId_evenement = curseur.getColumnIndex("id_evenement");
+        int indexLieu = curseur.getColumnIndex("lieu");
+        int indexTitre = curseur.getColumnIndex("titre");
+
+        for(curseur.moveToFirst();!curseur.isAfterLast();curseur.moveToNext()) {
+            int id_evenement = curseur.getInt(indexId_evenement);
+            String lieu = curseur.getString(indexLieu);
+            String titre = curseur.getString(indexTitre);
+            evenement = new Evenement(titre, lieu, id_evenement);
+            this.listeEvenements.add(evenement);
+        }
+
+        return listeEvenements;
     }
 
     /*public List<HashMap<String, String>> recupererListeEvenement() {
