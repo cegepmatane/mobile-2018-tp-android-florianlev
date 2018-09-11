@@ -2,7 +2,9 @@ package ca.qc.cgmatane.informatique.gestionevenement.modele;
 import java.util.HashMap;
 
 public class Evenement {
-
+    protected String titre;
+    protected String lieu;
+    protected int id_evenement;
 
     public String getTitre() {
         return titre;
@@ -24,9 +26,12 @@ public class Evenement {
         this.id_evenement = id_evenement;
     }
 
-    protected String titre;
-    protected String lieu;
-    protected int id_evenement;
+    public int getId_evenement()
+    {
+        return id_evenement;
+    }
+
+
 
     public Evenement(String titre, String lieu)
     {
@@ -41,10 +46,6 @@ public class Evenement {
         this.id_evenement = id_evenement;
     }
 
-    public int getId_evenement()
-    {
-        return id_evenement;
-    }
 
     public HashMap<String, String> obtenirEvenementPourAdaptateur()
     {

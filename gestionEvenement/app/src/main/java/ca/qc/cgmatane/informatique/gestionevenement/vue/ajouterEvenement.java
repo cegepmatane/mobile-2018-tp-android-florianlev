@@ -10,6 +10,7 @@ import android.widget.Toast;
 import ca.qc.cgmatane.informatique.gestionevenement.R;
 import ca.qc.cgmatane.informatique.gestionevenement.donnee.EvenementDao;
 
+
 public class AjouterEvenement extends AppCompatActivity {
     protected EditText champTitre;
     protected EditText champLieu;

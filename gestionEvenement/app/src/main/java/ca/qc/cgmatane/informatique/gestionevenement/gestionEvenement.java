@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import ca.qc.cgmatane.informatique.gestionevenement.donnee.EvenementDao;
+import ca.qc.cgmatane.informatique.gestionevenement.modele.BaseDeDonnees;
 import ca.qc.cgmatane.informatique.gestionevenement.vue.AjouterEvenement;
 import ca.qc.cgmatane.informatique.gestionevenement.vue.ModifierEvenement;
 
@@ -27,18 +28,25 @@ public class GestionEvenement extends AppCompatActivity {
     protected ListView vueListeEvenement;
     protected List<HashMap<String, String>> listeEvenementPourAdapteur;
 
-    protected EvenementDao accesseurEvenement = EvenementDao.getInstance();
     protected Intent intentionNaviguerAjouterEvenement;
+    protected EvenementDao accesseurEvenement;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vue_gestion_evenement);
 
+        Log.d("GestionEvenement", "onCreate");
+
+        BaseDeDonnees.getInstance(getApplicationContext());
+        accesseurEvenement = EvenementDao.getInstance();
+
         vueListeEvenement = (ListView) findViewById(R.id.vue_liste_evenement);
+        /*
         listeEvenementPourAdapteur = accesseurEvenement.recuperereListeEvenementPourAdapteur();
 
-        /*SimpleAdapter adapteur = new SimpleAdapter(
+        SimpleAdapter adapteur = new SimpleAdapter(
                 this,
                 listeEvenementPourAdapteur,
                 android.R.layout.two_line_list_item,
@@ -50,21 +58,18 @@ public class GestionEvenement extends AppCompatActivity {
         */
 
         afficherTousLesEvenements();
-        vueListeEvenement.setOnItemClickListener(
-                new AdapterView.OnItemClickListener(){
 
+        vueListeEvenement.setOnItemClickListener(
+                new AdapterView.OnItemClickListener() {
                     @Override
-                    public void onItemClick(AdapterView<?> parent,
-                                            View vue,
-                                            int positionDansAdapteur,
-                                            long positionItem) {
+                    public void onItemClick(AdapterView<?> parent, View vue, int positionDansAdaptateur, long positionItem) {
                         Log.d("GestionEvenement", "onItemClick");
-                        ListView vueListeEvenement = (ListView)vue.getParent();
+                        ListView vueListeEvenement = (ListView) vue.getParent();
 
                         @SuppressWarnings("unchecked")
-                        HashMap<String,String> evenement =
+                        HashMap<String, String> evenement =
                                 (HashMap<String, String>)
-                                        vueListeEvenement.getItemAtPosition((int)positionItem);
+                                        vueListeEvenement.getItemAtPosition((int) positionItem);
 
                         Toast message = Toast.makeText(getApplicationContext(),
                                 "Position " +
@@ -72,23 +77,20 @@ public class GestionEvenement extends AppCompatActivity {
                                         " titre " +
                                         evenement.get("titre"),
                                 Toast.LENGTH_SHORT);
+                        Log.d("GestionEvenement", "onItemClick Position:" + positionItem);
+                        Log.d("GestionEvenement", "onItemClick Titre:" + evenement.get("titre"));
 
-                        Log.d("GestionEvenement", "onItemClick Position:"+positionItem);
-                        Log.d("GestionEvenement", "onItemClick Titre:"+evenement.get("titre"));
-/*
-                    Toast message = Toast.makeText(getApplicationContext(),
-                            "Bonjour monde! ",
-                            Toast.LENGTH_SHORT);
-                            */
                         message.show();
-
                         Intent intentionNaviguerModiferEvenement = new Intent(
                                 GestionEvenement.this,
                                 ModifierEvenement.class
                         );
+
                         intentionNaviguerModiferEvenement.putExtra("id_evenement", evenement.get("id_evenement"));
                         startActivityForResult(intentionNaviguerModiferEvenement, ACTIVITE_MODIFIER_EVENEMENT);
-                    }}
+
+                    }
+                }
         );
 
         intentionNaviguerAjouterEvenement = new Intent(this,
