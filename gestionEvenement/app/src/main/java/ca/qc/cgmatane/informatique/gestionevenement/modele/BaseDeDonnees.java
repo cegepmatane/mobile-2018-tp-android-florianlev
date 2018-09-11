@@ -28,7 +28,8 @@ public class BaseDeDonnees extends SQLiteOpenHelper {
     }
 
     public void onCreate(SQLiteDatabase db) {
-
+        String CREATE_TABLE = "create table livre(id_livre INTEGER PRIMARY KEY, titre TEXT, auteur TEXT)";
+        db.execSQL(CREATE_TABLE);
     }
 
     public void onOpen(SQLiteDatabase db) {
