@@ -69,14 +69,16 @@ public class EvenementDao {
         return null;
     }
 
-    public void modifierEvenement(Evenement evenement)
+    public void modifierEvenement(Evenement evenementModifier)
     {
-        for(Evenement evenementTeste : this.listeEvenements)
+        for(Evenement evenement : this.listeEvenements)
         {
-            if(evenementTeste.getId_evenement() == evenement.getId_evenement())
+            if(evenement.getId_evenement() == evenementModifier.getId_evenement())
             {
-                evenementTeste.setLieu(evenement.getLieu());
-                evenementTeste.setTitre(evenement.getTitre());
+                String MODIFIER_EVENEMENT;
+
+                MODIFIER_EVENEMENT = "UPDATE evenement SET titre = '" + evenementModifier.getTitre() + "', lieu = '" + evenementModifier.getLieu() + "' WHERE id_evenement = " + evenementModifier.getId_evenement();
+                accesseurBaseDeDonnees.getWritableDatabase().execSQL(MODIFIER_EVENEMENT);
                 return;
             }
         }
@@ -94,7 +96,7 @@ public class EvenementDao {
 
     public void ajouterEvenement(Evenement evenement)
     {
-        listeEvenements.add(evenement);
+        //listeEvenements.add(evenement);
         System.out.println("AjouterEvenement");
         String AJOUTER_EVENEMENT;
         AJOUTER_EVENEMENT = "INSERT INTO evenement (titre,lieu) VALUES ('"+ evenement.getTitre() +"','"+ evenement.getLieu()+"');";
