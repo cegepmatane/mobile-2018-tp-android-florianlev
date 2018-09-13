@@ -18,6 +18,8 @@
         </activity>
         <activity android:name=".vue.AjouterEvenement" />
         <activity android:name=".vue.ModifierEvenement"></activity>
+
+        <receiver android:name=".AlertReceiver"/>
     </application>
 
 </manifest>

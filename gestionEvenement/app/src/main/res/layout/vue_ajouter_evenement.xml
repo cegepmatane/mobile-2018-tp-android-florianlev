@@ -23,8 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name" />
+        android:inputType="textPersonName" />
 
     <TextView
         android:id="@+id/textView3"
@@ -37,8 +36,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name" />
+        android:inputType="textPersonName" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Date et Heure de l'Evenement" />
 
     <EditText
         android:id="@+id/vue_ajouter_evenement_date"
@@ -52,7 +56,7 @@
         android:focusable="false"
         android:focusableInTouchMode="false"
         android:gravity="center_horizontal"
-        android:hint="DD-MM-YYYY"/>
+        android:hint="DD-MM-YYYY HH-MN"/>
 
     <Button
         android:id="@+id/action_enregistrer_evenement"
