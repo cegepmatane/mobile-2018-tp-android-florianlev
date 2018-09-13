@@ -11,7 +11,7 @@
         android:id="@+id/action_naviguer_ajouter_evenement"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:text="Ajouter un evenement" />
 
     <ListView
         android:id="@+id/vue_liste_evenement"
