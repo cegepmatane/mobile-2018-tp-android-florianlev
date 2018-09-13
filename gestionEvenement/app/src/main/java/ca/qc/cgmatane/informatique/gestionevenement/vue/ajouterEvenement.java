@@ -16,7 +16,7 @@ import ca.qc.cgmatane.informatique.gestionevenement.donnee.EvenementDao;
 import ca.qc.cgmatane.informatique.gestionevenement.modele.Evenement;
 
 
-public class AjouterEvenement extends AppCompatActivity implements DatePickerDialog.OnDateSetListener{
+public class AjouterEvenement extends AppCompatActivity{
     protected EditText champTitre;
     protected EditText champLieu;
     protected EditText champDate;
@@ -53,10 +53,11 @@ public class AjouterEvenement extends AppCompatActivity implements DatePickerDia
                 int annee = dateActuel.get(Calendar.YEAR);
                 int mois = dateActuel.get(Calendar.MONTH);
                 int jour = dateActuel.get(Calendar.DAY_OF_MONTH);
-                DatePickerDialog dialogueChoixDate = new DatePickerDialog(getApplicationContext(), new DatePickerDialog.OnDateSetListener() {
+                DatePickerDialog dialogueChoixDate = new DatePickerDialog(AjouterEvenement.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int selectionAnnee, int selectionMois, int selectionJour) {
-                        champDate.setText();
+                        champDate.setText(selectionJour+"-"+selectionMois+"-"+selectionAnnee);
+                        dateActuel.set(selectionAnnee,selectionMois,selectionJour);
                     }
                 }, annee, mois, jour);
                 dialogueChoixDate.show();
