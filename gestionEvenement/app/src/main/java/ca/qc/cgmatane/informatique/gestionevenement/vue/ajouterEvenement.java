@@ -1,14 +1,16 @@
 package ca.qc.cgmatane.informatique.gestionevenement.vue;
 
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.Toast;
+import android.widget.TimePicker;
 
+import android.text.format.DateFormat;
 import java.util.Calendar;
 
 import ca.qc.cgmatane.informatique.gestionevenement.R;
@@ -16,12 +18,13 @@ import ca.qc.cgmatane.informatique.gestionevenement.donnee.EvenementDao;
 import ca.qc.cgmatane.informatique.gestionevenement.modele.Evenement;
 
 
-public class AjouterEvenement extends AppCompatActivity{
+public class AjouterEvenement extends AppCompatActivity {
     protected EditText champTitre;
     protected EditText champLieu;
     protected EditText champDate;
     protected Calendar dateActuel;
     protected Evenement evenement;
+    int heure, minute;
 
     protected EvenementDao accesseurEvenement = EvenementDao.getInstance();
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,11 +56,21 @@ public class AjouterEvenement extends AppCompatActivity{
                 int annee = dateActuel.get(Calendar.YEAR);
                 int mois = dateActuel.get(Calendar.MONTH);
                 int jour = dateActuel.get(Calendar.DAY_OF_MONTH);
+                heure = dateActuel.get(Calendar.HOUR_OF_DAY);
+                minute = dateActuel.get(Calendar.MINUTE);
                 DatePickerDialog dialogueChoixDate = new DatePickerDialog(AjouterEvenement.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
-                    public void onDateSet(DatePicker view, int selectionAnnee, int selectionMois, int selectionJour) {
-                        champDate.setText(selectionJour+"-"+selectionMois+"-"+selectionAnnee);
-                        dateActuel.set(selectionAnnee,selectionMois,selectionJour);
+                    public void onDateSet(DatePicker view, final int selectionAnnee, final int selectionMois, final int selectionJour) {
+                        TimePickerDialog timePickerDialog = new TimePickerDialog(AjouterEvenement.this, new TimePickerDialog.OnTimeSetListener(){
+
+                            @Override
+                            public void onTimeSet(TimePicker vue, int selectionHeure, int selectionMinute) {
+                                champDate.setText(selectionJour+"-"+selectionMois+"-"+selectionAnnee + "-" + selectionHeure + "H:" + selectionMinute +"mn");
+                                dateActuel.set(selectionAnnee,selectionMois,selectionJour,heure,minute);
+
+                            }
+                        }, heure, minute, DateFormat.is24HourFormat(AjouterEvenement.this));
+                        timePickerDialog.show();
                     }
                 }, annee, mois, jour);
                 dialogueChoixDate.show();
@@ -67,14 +80,6 @@ public class AjouterEvenement extends AppCompatActivity{
 
     private void enregistrerEvenement()
     {
-
-        /*Toast message = Toast.makeText(getApplicationContext(),
-                "Titre "+champTitre.getText().toString(),
-                Toast.LENGTH_SHORT);
-
-        message.show();*/
-
-        //accesseurEvenement.ajouterEvenement();
         evenement = new Evenement(champTitre.getText().toString(),champLieu.getText().toString());
         accesseurEvenement.ajouterEvenement(evenement);
         naviguerRetourGestionEvenement();
@@ -85,5 +90,6 @@ public class AjouterEvenement extends AppCompatActivity{
     {
         this.finish();
     }
+
 
 }
