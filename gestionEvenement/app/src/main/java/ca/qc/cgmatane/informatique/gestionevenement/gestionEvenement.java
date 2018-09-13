@@ -103,7 +103,7 @@ public class GestionEvenement extends AppCompatActivity {
                 new View.OnClickListener()
                 {
                     public void onClick(View arg0) {
-                        startActivity(intentionNaviguerAjouterEvenement);
+                        startActivityForResult(intentionNaviguerAjouterEvenement,ACTIVITE_AJOUTER_EVENEMENT);
                     }
                 }
         );

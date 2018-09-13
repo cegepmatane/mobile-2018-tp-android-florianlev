@@ -9,11 +9,13 @@ import android.widget.Toast;
 
 import ca.qc.cgmatane.informatique.gestionevenement.R;
 import ca.qc.cgmatane.informatique.gestionevenement.donnee.EvenementDao;
+import ca.qc.cgmatane.informatique.gestionevenement.modele.Evenement;
 
 
 public class AjouterEvenement extends AppCompatActivity {
     protected EditText champTitre;
     protected EditText champLieu;
+    protected Evenement evenement;
 
     protected EvenementDao accesseurEvenement = EvenementDao.getInstance();
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,12 +27,12 @@ public class AjouterEvenement extends AppCompatActivity {
 
         Button actionEnregistrerEvenement =
                 (Button)findViewById(R.id.action_enregistrer_evenement);
-
         actionEnregistrerEvenement.setOnClickListener(
 
                 new View.OnClickListener()
                 {
                     public void onClick(View arg0) {
+                        System.out.println("AJOUT");
                         enregistrerEvenement();
                     }
                 }
@@ -47,6 +49,8 @@ public class AjouterEvenement extends AppCompatActivity {
         message.show();*/
 
         //accesseurEvenement.ajouterEvenement();
+        evenement = new Evenement(champTitre.getText().toString(),champLieu.getText().toString());
+        accesseurEvenement.ajouterEvenement(evenement);
         naviguerRetourGestionEvenement();
 
     }

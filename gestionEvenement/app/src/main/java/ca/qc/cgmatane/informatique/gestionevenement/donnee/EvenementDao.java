@@ -95,6 +95,10 @@ public class EvenementDao {
     public void ajouterEvenement(Evenement evenement)
     {
         listeEvenements.add(evenement);
+        System.out.println("AjouterEvenement");
+        String AJOUTER_EVENEMENT;
+        AJOUTER_EVENEMENT = "INSERT INTO evenement (titre,lieu) VALUES ('"+ evenement.getTitre() +"','"+ evenement.getLieu()+"');";
+        accesseurBaseDeDonnees.getWritableDatabase().execSQL(AJOUTER_EVENEMENT);
 
     }
 
