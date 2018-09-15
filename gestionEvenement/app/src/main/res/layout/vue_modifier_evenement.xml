@@ -41,7 +41,13 @@ tools:context=".vue.ModifierEvenement">
     android:ems="10"
     android:inputType="textPersonName" />
 
-<Button
+    <CheckBox
+        android:id="@+id/vue_modifier_evenement_champ_estFait"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Evenement Fait" />
+
+    <Button
     android:id="@+id/action_modifier_evenement"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"

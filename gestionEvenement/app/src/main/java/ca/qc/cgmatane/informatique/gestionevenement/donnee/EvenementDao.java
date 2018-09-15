@@ -34,7 +34,7 @@ public class EvenementDao {
     }
 
     public List<Evenement> listerEvenement() {
-        String LISTER_EVENEMENTS = "SELECT * FROM evenement";
+        String LISTER_EVENEMENTS = "SELECT * FROM evenement ";
         Cursor curseur = accesseurBaseDeDonnees.getReadableDatabase().rawQuery(LISTER_EVENEMENTS,
                 null);
         this.listeEvenements.clear();

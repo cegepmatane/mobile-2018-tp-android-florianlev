@@ -28,7 +28,7 @@ public class BaseDeDonnees extends SQLiteOpenHelper {
     }
 
     public void onCreate(SQLiteDatabase db) {
-        String CREATE_TABLE = "create table evenement(id_evenement INTEGER PRIMARY KEY, titre TEXT, lieu TEXT)";
+        String CREATE_TABLE = "create table evenement(id_evenement INTEGER PRIMARY KEY, titre TEXT, lieu TEXT, estFait BOOLEAN)";
         db.execSQL(CREATE_TABLE);
     }
 
@@ -47,7 +47,7 @@ public class BaseDeDonnees extends SQLiteOpenHelper {
     }
 
     public void onUpgrade(SQLiteDatabase db, int arg1, int arg2) {
-        String CREER_TABLE = "create table evenement(id_evenement INTEGER PRIMARY KEY, titre TEXT, lieu TEXT)";
+        String CREER_TABLE = "create table evenement(id_evenement INTEGER PRIMARY KEY, titre TEXT, lieu TEXT, estFait BOOLEAN)";
         db.execSQL(CREER_TABLE);
     }
 }
