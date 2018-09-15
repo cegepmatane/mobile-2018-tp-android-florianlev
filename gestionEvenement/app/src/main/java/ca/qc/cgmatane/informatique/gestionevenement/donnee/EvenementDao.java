@@ -34,7 +34,7 @@ public class EvenementDao {
     }
 
     public List<Evenement> listerEvenement() {
-        String LISTER_EVENEMENTS = "SELECT * FROM evenement ";
+        String LISTER_EVENEMENTS = "SELECT * FROM evenement WHERE fait = '0'";
         Cursor curseur = accesseurBaseDeDonnees.getReadableDatabase().rawQuery(LISTER_EVENEMENTS,
                 null);
         this.listeEvenements.clear();
@@ -76,8 +76,15 @@ public class EvenementDao {
             if(evenement.getId_evenement() == evenementModifier.getId_evenement())
             {
                 String MODIFIER_EVENEMENT;
+                System.out.println(evenementModifier.getEstFait());
+                if(evenementModifier.getEstFait()){
 
-                MODIFIER_EVENEMENT = "UPDATE evenement SET titre = '" + evenementModifier.getTitre() + "', lieu = '" + evenementModifier.getLieu() + "' WHERE id_evenement = " + evenementModifier.getId_evenement();
+                    MODIFIER_EVENEMENT = "UPDATE evenement SET titre = '" + evenementModifier.getTitre() + "', lieu = '" + evenementModifier.getLieu() + "', fait = '1' WHERE id_evenement = " + evenementModifier.getId_evenement();
+
+                }
+                else{
+                    MODIFIER_EVENEMENT = "UPDATE evenement SET titre = '" + evenementModifier.getTitre() + "', lieu = '" + evenementModifier.getLieu() + "', fait = '0' WHERE id_evenement = " + evenementModifier.getId_evenement();
+                }
                 accesseurBaseDeDonnees.getWritableDatabase().execSQL(MODIFIER_EVENEMENT);
                 return;
             }
@@ -99,7 +106,7 @@ public class EvenementDao {
         //listeEvenements.add(evenement);
         System.out.println("AjouterEvenement");
         String AJOUTER_EVENEMENT;
-        AJOUTER_EVENEMENT = "INSERT INTO evenement (titre,lieu) VALUES ('"+ evenement.getTitre() +"','"+ evenement.getLieu()+"');";
+        AJOUTER_EVENEMENT = "INSERT INTO evenement (titre,lieu,fait) VALUES ('"+ evenement.getTitre() +"','"+ evenement.getLieu()+"','0');";
         accesseurBaseDeDonnees.getWritableDatabase().execSQL(AJOUTER_EVENEMENT);
 
     }

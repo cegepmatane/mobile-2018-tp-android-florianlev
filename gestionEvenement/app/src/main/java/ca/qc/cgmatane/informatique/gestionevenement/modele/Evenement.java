@@ -4,10 +4,19 @@ import java.util.HashMap;
 public class Evenement {
     protected String titre;
     protected String lieu;
+    protected boolean estFait;
     protected int id_evenement;
 
     public String getTitre() {
         return titre;
+    }
+
+    public boolean getEstFait() {
+        return estFait;
+    }
+
+    public void setEstFait(boolean estFait) {
+        this.estFait = estFait;
     }
 
     public void setTitre(String titre) {

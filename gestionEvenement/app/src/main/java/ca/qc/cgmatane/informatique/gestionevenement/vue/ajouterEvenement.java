@@ -99,6 +99,7 @@ public class AjouterEvenement extends AppCompatActivity {
     private void enregistrerEvenement()
     {
         evenement = new Evenement(champTitre.getText().toString(),champLieu.getText().toString());
+        evenement.setEstFait(false);
         accesseurEvenement.ajouterEvenement(evenement);
         naviguerRetourGestionEvenement();
 
